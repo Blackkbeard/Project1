@@ -1,0 +1,107 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"); */
+
+@font-face {
+  font-family: "Kranky";
+  src: url("D:\General Assembly\Notes\Project1\Kranky.ttf") format("ttf");
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  /* background: radial-gradient(#ff5ca3, #4ea0ff); */
+  min-height: 100vh;
+  background-color: bisque;
+  font-family: "fuzzy bubbles", cursive;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: kranky;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  flex-direction: column;
+  font-family: kranky;
+  color: black;
+}
+
+.overlay.visible {
+  display: flex;
+  animation: overlay-grow 500ms forwards;
+}
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: pink;
+    font-size: 4em;
+  }
+}
+.smalltext {
+  font-size: 1em;
+}
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px;
+  margin: 50px;
+  justify-content: center;
+  /* perspective: 600px; */
+}
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 /-1;
+}
+.game {
+  font-size: 2em;
+  color: aqua;
+  font-family: Kranky;
+}
+.gamecard {
+  position: relative;
+  width: 130px;
+  height: 145px;
+  border-radius: 10px;
+}
+.cardface {
+  position: absolute;
+  width: 130px;
+  height: 145px;
+  display: flex;
+  border-width: 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  /* transition: transform 500ms ease-in-out; */
+}
+.cardfront {
+  transform: rotateX(180deg);
+}
+
+.pirate {
+  align-self: flex-start;
+  width: 130px;
+  height: 145px;
+  border-radius: 10px;
+}
+.gamecard:hover .cardback {
+  transform: rotate(-180deg);
+}
+.gamecard:hover .cardfront {
+  transform: rotateY(0);
+}
