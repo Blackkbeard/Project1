@@ -22,6 +22,7 @@ function gameStart() {
 }
 
 //--- MVP---//
+//isit
 // Creating click function for the cards itself
 
 // Creating Shuffle Cards, randomising cards
