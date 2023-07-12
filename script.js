@@ -6,12 +6,12 @@ const player2 = "";
 
 class AudioController {
   constructor() {
-    this.bgMusic = new Audio("Music/music.mp3");
+    this.bgMusic = new Audio("Music/maple.mp3");
     this.flipSound = new Audio("Music/music.mp3");
     this.matchSound = new Audio("Music/music.mp3");
     this.victorySound = new Audio("Music/music.mp3");
     this.gameOverSound = new Audio("Music/music.mp3");
-    this.bgMusic.volume = 0.1;
+    this.bgMusic.volume = 0;
     this.bgMusic.loop = true;
   }
   startMusic() {
@@ -43,6 +43,7 @@ class MixNMatch {
     this.totatTime = totalTime;
     this.timer = document.getElementById("timetaken");
     this.ticker = document.getElementById("flips");
+    this.audioController = new AudioController();
   }
   startGame() {
     this.cardToCheck = null;
