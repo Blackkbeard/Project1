@@ -70,10 +70,10 @@ class MixOrMatch {
 function ready() {
   // query selector
   //to get overlays from htmL to array(overlay)
-  let overlays = Array.from(document.getElementsByClassName("overlay"));
+  let overlays = Array.from(document.getElementsByClassName("overlaytext"));
   // to get gamecards from html to array(card)
   let cards = Array.from(document.getElementsByClassName("card"));
-  let game = new MixOrMatch(100, cards);
+  let game = new MixOrMatch(60, cards);
   // Adding event listeners to Overlay
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", () => {
@@ -83,16 +83,16 @@ function ready() {
       audioController.startMusic();
     });
   });
-}
 
-//--- MVP---//
+  //--- MVP---//
 
-// Creating click function for the cards itself
-cards.forEach((card) => {
-  card.addEventListener("click", () => {
-    game.flipCard(card);
+  // Creating click function for the cards itself
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      game.flipCard(card);
+    });
   });
-});
+}
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", ready);
 } else {
