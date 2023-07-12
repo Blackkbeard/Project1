@@ -99,9 +99,9 @@ body {
   height: 145px;
   border-radius: 10px;
 }
-.gamecard:hover .cardback {
+.gamecard.front .cardback {
   transform: rotate(-180deg);
 }
-.gamecard:hover .cardfront {
+.gamecard.front .cardfront {
   transform: rotateY(0);
 }

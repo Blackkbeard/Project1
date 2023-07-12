@@ -7,7 +7,7 @@ const player2 = "";
 class AudioController {
   constructor() {
     this.bgMusic = new Audio("Music/maple.mp3");
-    this.flipSound = new Audio("Music/music.mp3");
+    this.flipSound = new Audio("Music/flip.mp3");
     this.matchSound = new Audio("Music/music.mp3");
     this.victorySound = new Audio("Music/music.mp3");
     this.gameOverSound = new Audio("Music/music.mp3");
@@ -29,7 +29,7 @@ class AudioController {
   }
   victory() {
     this.stopMusic();
-    this.victory.play();
+    this.victorySound.play();
   }
   gameOver() {
     this.stopMusic();
@@ -40,27 +40,46 @@ class AudioController {
 class MixNMatch {
   constructor(totalTime, cards) {
     this.cardsArray = cards;
-    this.totatTime = totalTime;
+    this.totalTime = totalTime;
     this.timer = document.getElementById("timetaken");
     this.ticker = document.getElementById("flips");
     this.audioController = new AudioController();
   }
   startGame() {
     this.cardToCheck = null;
+    this.totalClicks = 0;
+    this.timeRemaining = this.totalTime;
+    this.matchedCards = [];
+    this.busy = true;
+  }
+  flipCard(card) {
+    if (this.canFlipCard(card)) {
+      this.audioController.flip();
+      this.totalClicks++;
+      this.ticker.innerText = this.totalClicks;
+    }
+  }
+  canFlipCard(card) {
+    return (
+      !this.busy &&
+      !this.matchedCards.includes(cards) &&
+      card !== this.cardToCheck
+    );
   }
 }
 // To Start the Game upon loading of webpage
-function webReady() {
+function ready() {
   // query selector
   //to get overlays from htmL to array(overlay)
   let overlays = Array.from(document.getElementsByClassName("overlay"));
   // to get gamecards from html to array(card)
   let cards = Array.from(document.getElementsByClassName("gamecard"));
+  let game = new MixNMatch(100, cards);
   // Adding event listeners to Overlay
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", () => {
       overlay.classList.remove("visible"); // to remove overlay upon click
-      // game.startGame(); // initialise game
+      game.startGame(); // initialise game
       let audioController = new AudioController();
       audioController.startMusic();
     });
@@ -70,15 +89,15 @@ function webReady() {
 //--- MVP---//
 
 // Creating click function for the cards itself
-cards.forEach((cards) => {
+cards.forEach((card) => {
   gamecard.addEventListener("click", () => {
-    //game.flipCard(card)
+    game.flipCard(card);
   });
 });
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", webReady());
 } else {
-  webReady();
+  ready();
 }
 
 // creating audio controller
