@@ -1,14 +1,11 @@
-// Vairables
-// for player 1 player 2
-const cards = [];
-
+// creating audio controller
 class AudioController {
   constructor() {
-    this.bgMusic = new Audio("Music/maple.mp3");
-    this.flipSound = new Audio("Music/flip.mp3");
-    this.matchSound = new Audio("Music/music.mp3");
-    this.victorySound = new Audio("Music/music.mp3");
-    this.gameOverSound = new Audio("Music/music.mp3");
+    this.bgMusic = new Audio("Music/map.le.mp3");
+    this.flipSound = new Audio("Music/fl.ip.mp3");
+    this.matchSound = new Audio("Music/musi.c.mp3");
+    this.victorySound = new Audio("Music/mus.ic.mp3");
+    this.gameOverSound = new Audio("Music/m.usic.mp3");
     this.bgMusic.volume = 0.05;
     this.bgMusic.loop = true;
   }
@@ -17,7 +14,7 @@ class AudioController {
   }
   stopMusic() {
     this.bgMusic.pause();
-    this.bgMusic.currentTime = 0.1;
+    this.bgMusic.currentTime = 0;
   }
   flip() {
     this.flipSound.play();
@@ -98,8 +95,6 @@ if (document.readyState === "loading") {
 } else {
   ready();
 }
-
-// creating audio controller
 
 // Creating Shuffle Cards, randomising cards
 
