@@ -9,16 +9,15 @@
 }
 body {
   margin: 0;
-  /* background: radial-gradient(#ff5ca3, #4ea0ff); */
-  min-height: 100vh;
   background-color: bisque;
-  font-family: "fuzzy bubbles", cursive;
+  min-height: 100vh;
+  font-family: kranky;
 }
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: black;
   font-family: kranky;
+  text-align: center;
+  font-size: 3em;
 }
 .overlay {
   display: none;
