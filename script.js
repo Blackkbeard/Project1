@@ -5,7 +5,36 @@ const player1 = "";
 const player2 = "";
 
 class AudioController {
-  constructor() {}
+  constructor() {
+    this.bgMusic = new Audio("Music/music.mp3");
+    this.flipSound = new Audio("Music/music.mp3");
+    this.matchSound = new Audio("Music/music.mp3");
+    this.victorySound = new Audio("Music/music.mp3");
+    this.gameOverSound = new Audio("Music/music.mp3");
+    this.bgMusic.volume = 0.1;
+    this.bgMusic.loop = true;
+  }
+  startMusic() {
+    this.bgMusic.play();
+  }
+  stopMusic() {
+    this.bgMusic.pause();
+    this.bgMusic.currentTime = 0.1;
+  }
+  flip() {
+    this.flipSound.play();
+  }
+  match() {
+    this.matchSound.play();
+  }
+  victory() {
+    this.stopMusic();
+    this.victory.play();
+  }
+  gameOver() {
+    this.stopMusic();
+    this.gameOverSound.play();
+  }
 }
 
 // To Start the Game upon loading of webpage
@@ -19,7 +48,9 @@ function webReady() {
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", () => {
       overlay.classList.remove("visible"); // to remove overlay upon click
-      game.startGame(); // initialise game
+      // game.startGame(); // initialise game
+      let audioController = new AudioController();
+      audioController.startMusic();
     });
   });
 }
@@ -39,7 +70,7 @@ if (document.readyState === "loading") {
 }
 
 // creating audio controller
-let audioController = new AudioController();
+
 // Creating Shuffle Cards, randomising cards
 
 // Deploying randomised card
