@@ -1,8 +1,6 @@
 // Vairables
-const gameState = ""; // for player 1 player 2
+// for player 1 player 2
 const cards = [];
-const player1 = "";
-const player2 = "";
 
 class AudioController {
   constructor() {
@@ -11,7 +9,7 @@ class AudioController {
     this.matchSound = new Audio("Music/music.mp3");
     this.victorySound = new Audio("Music/music.mp3");
     this.gameOverSound = new Audio("Music/music.mp3");
-    this.bgMusic.volume = 0;
+    this.bgMusic.volume = 0.05;
     this.bgMusic.loop = true;
   }
   startMusic() {
@@ -37,7 +35,7 @@ class AudioController {
   }
 }
 
-class MixNMatch {
+class MixOrMatch {
   constructor(totalTime, cards) {
     this.cardsArray = cards;
     this.totalTime = totalTime;
@@ -57,12 +55,13 @@ class MixNMatch {
       this.audioController.flip();
       this.totalClicks++;
       this.ticker.innerText = this.totalClicks;
+      card.classList.add("visible");
     }
   }
   canFlipCard(card) {
     return (
       !this.busy &&
-      !this.matchedCards.includes(cards) &&
+      !this.matchedCards.includes(card) &&
       card !== this.cardToCheck
     );
   }
@@ -73,8 +72,8 @@ function ready() {
   //to get overlays from htmL to array(overlay)
   let overlays = Array.from(document.getElementsByClassName("overlay"));
   // to get gamecards from html to array(card)
-  let cards = Array.from(document.getElementsByClassName("gamecard"));
-  let game = new MixNMatch(100, cards);
+  let cards = Array.from(document.getElementsByClassName("card"));
+  let game = new MixOrMatch(100, cards);
   // Adding event listeners to Overlay
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", () => {
@@ -90,12 +89,12 @@ function ready() {
 
 // Creating click function for the cards itself
 cards.forEach((card) => {
-  gamecard.addEventListener("click", () => {
+  card.addEventListener("click", () => {
     game.flipCard(card);
   });
 });
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", webReady());
+  document.addEventListener("DOMContentLoaded", ready);
 } else {
   ready();
 }

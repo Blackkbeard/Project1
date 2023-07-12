@@ -70,7 +70,7 @@ body {
   color: black;
   font-family: Kranky;
 }
-.gamecard {
+.card {
   position: relative;
   width: 130px;
   height: 145px;
@@ -92,6 +92,9 @@ body {
 .cardfront {
   transform: rotateX(180deg);
 }
+.card.matched .cardfront .pirate {
+  animation: dance 1s linear infinite 500ms;
+}
 
 .pirate {
   align-self: flex-start;
@@ -99,9 +102,9 @@ body {
   height: 145px;
   border-radius: 10px;
 }
-.gamecard.front .cardback {
+.card.visible .cardback {
   transform: rotate(-180deg);
 }
-.gamecard.front .cardfront {
+.card.visible .cardfront {
   transform: rotateY(0);
 }
