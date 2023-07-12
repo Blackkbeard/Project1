@@ -4,9 +4,12 @@ const cards = [];
 const player1 = "";
 const player2 = "";
 
-gameStart();
+class AudioController {
+  constructor() {}
+}
+
 // To Start the Game upon loading of webpage
-function gameStart() {
+function webReady() {
   // query selector
   //to get overlays from htmL to array(overlay)
   let overlays = Array.from(document.getElementsByClassName("overlay"));
@@ -22,9 +25,21 @@ function gameStart() {
 }
 
 //--- MVP---//
-//isit
-// Creating click function for the cards itself
 
+// Creating click function for the cards itself
+cards.forEach((cards) => {
+  gamecard.addEventListener("click", () => {
+    //game.flipCard(card)
+  });
+});
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", webReady());
+} else {
+  webReady();
+}
+
+// creating audio controller
+let audioController = new AudioController();
 // Creating Shuffle Cards, randomising cards
 
 // Deploying randomised card

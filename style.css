@@ -67,7 +67,7 @@ body {
 }
 .game {
   font-size: 2em;
-  color: aqua;
+  color: black;
   font-family: Kranky;
 }
 .gamecard {
@@ -87,7 +87,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   backface-visibility: hidden;
-  /* transition: transform 500ms ease-in-out; */
+  transition: transform 500ms ease-in-out;
 }
 .cardfront {
   transform: rotateX(180deg);
