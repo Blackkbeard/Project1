@@ -37,6 +37,17 @@ class AudioController {
   }
 }
 
+class MixNMatch {
+  constructor(totalTime, cards) {
+    this.cardsArray = cards;
+    this.totatTime = totalTime;
+    this.timer = document.getElementById("timetaken");
+    this.ticker = document.getElementById("flips");
+  }
+  startGame() {
+    this.cardToCheck = null;
+  }
+}
 // To Start the Game upon loading of webpage
 function webReady() {
   // query selector
