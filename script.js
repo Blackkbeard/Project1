@@ -125,37 +125,46 @@ class gameConditions {
     // to pop up the game over screen
     document.getElementById("game-over-text").classList.add("visible");
     this.audioController.gameOver();
-
   }
   victory() {
+    // reset timer
     clearInterval(this.countdown);
+    // player music
     this.audioController.victory();
+    // overlay
     document.getElementById("victory-text").classList.add("visible");
   }
+  //to check for matched cards
   checkForCardMatch(card) {
+    //matched cards
     if (this.getCardType(card) === this.getCardType(this.cardToCheck))
       this.cardMatch(card, this.cardToCheck);
+    //mismatch cards
     else this.cardMismatch(card, this.cardToCheck);
 
     this.cardToCheck = null;
   }
+  //function takes a card, when match card, push both cards to match class
   cardMatch(card1, card2) {
     this.matchedCards.push(card1);
     this.matchedCards.push(card2);
+    // adding matched class to card
     card1.classList.add("matched");
     card2.classList.add("matched");
-
     if (this.matchedCards.length === this.cardsArray.length) this.victory();
   }
+  // function for card mismatch. if mismatch, will turn back
   cardMismatch(card1, card2) {
     this.busy = true;
     setTimeout(() => {
+      //flipping cards back
       card1.classList.remove("visible");
       card2.classList.remove("visible");
       this.busy = false;
+      // if u want the card to flip back faster
     }, 1000);
   }
-
+  // return the type of card . the image src value to compare.
   getCardType(card) {
     return card.getElementsByClassName("value")[0].src;
   }
