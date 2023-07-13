@@ -203,8 +203,3 @@ if (document.readyState === "loading") {
   ready();
 }
 
-// Creating Shuffle Cards, randomising cards
-
-// Deploying randomised card
-
-// Restarting game upon completion
