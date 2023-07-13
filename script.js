@@ -133,6 +133,7 @@ class gameConditions {
     this.audioController.victory();
     // overlay
     document.getElementById("victory-text").classList.add("visible");
+    this.hideCards();
   }
   //to check for matched cards
   checkForCardMatch(card) {
