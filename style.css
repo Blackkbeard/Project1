@@ -1,6 +1,10 @@
 @font-face {
   font-family: "kranky";
-  src: url("Kranky.ttf") format("ttf");
+  src: url("/Fonts/Kranky.ttf") format("ttf");
+}
+@font-face {
+  font-family: "fuzzy";
+  src: url("/Fonts/fuzzy.ttf") format("ttf");
 }
 
 * {
@@ -18,7 +22,7 @@ body {
   color: black;
   font-family: kranky;
   text-align: center;
-  font-size: 3em;
+  font-size: 5em;
 }
 
 .gameinfocontainer {
@@ -29,7 +33,8 @@ body {
 
 .gameinfo {
   color: black;
-  font-size: 3em;
+  font-size: 2em;
+  font-family: fuzzy;
 }
 
 .game-container {
