@@ -9,12 +9,17 @@ class AudioController {
   }
   startMusic() {
     // start music function
+    this.stopMusic();
     this.bgMusic.play();
   }
   stopMusic() {
     // start music function
     this.bgMusic.pause();
     this.bgMusic.currentTime = 0;
+    // this.victorySound.pause();
+    // this.gameOverSound.pause();
+    // this.victorysound.currentTime = 0;
+    // this.gameOverSound.currentTime = 0;
   }
   restartMusic() {
     //restart music function
@@ -33,7 +38,7 @@ class AudioController {
     this.gameOverSound.play();
   }
 }
-// to shuffle cards & set cards & timer
+// creating a class of functions. To shuffle cards & set cards & timer
 class MixOrMatch {
   constructor(totalTime, cards) {
     // TO pass time and card from HTML
@@ -45,7 +50,9 @@ class MixOrMatch {
   startGame() {
     this.cardToCheck = null; // To check
     this.timeRemaining = this.totalTime;
+    // Using this array we can put all matched cards here to determine victory/lose
     this.matchedCards = [];
+    // Using this to test if card is flipped or not.
     this.busy = true;
     setTimeout(() => {
       this.audioController.restartMusic();
@@ -74,10 +81,11 @@ class MixOrMatch {
       }
     }
   }
+  // Function to determine if user can flip card using boolean
   canFlipCard(card) {
     return (
-      !this.busy &&
-      !this.matchedCards.includes(card) &&
+      !this.busy && //flipped card
+      !this.matchedCards.includes(card) && 
       card !== this.cardToCheck
     );
   }
@@ -122,7 +130,7 @@ class MixOrMatch {
   }
 
   shuffleCards(cardsArray) {
-    // Fisher-Yates Shuffle Algorithm.
+    
     for (let i = cardsArray.length - 1; i > 0; i--) {
       let randIndex = Math.floor(Math.random() * (i + 1));
       cardsArray[randIndex].style.order = i;
