@@ -160,6 +160,7 @@ class gameConditions {
       //flipping cards back
       card1.classList.remove("visible");
       card2.classList.remove("visible");
+      // allows us not to flip any other card while mismatched cards are showing
       this.busy = false;
       // if u want the card to flip back faster
     }, 1000);
