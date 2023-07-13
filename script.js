@@ -6,6 +6,10 @@ class AudioController {
     this.gameOverSound = new Audio("Music/music.mp3");
     this.bgMusic.volume = 0.05; //volume
     this.bgMusic.loop = true; // to loop
+    this.victorySound.volume = 0.07; //volume
+    this.victorySound.loop = true; // to loop
+    this.gameOverSound.volume = 0.07; //volume
+    this.gameOverSound.loop = true; // to loop
   }
   startMusic() {
     // start music function
@@ -39,7 +43,7 @@ class AudioController {
   }
 }
 // creating a class of functions. To shuffle cards & set cards & timer
-class MixOrMatch {
+class gameConditions {
   constructor(totalTime, cards) {
     // TO pass time and card from HTML
     this.cardsArray = cards;
@@ -54,26 +58,42 @@ class MixOrMatch {
     this.matchedCards = [];
     // Using this to test if card is flipped or not.
     this.busy = true;
+    //creating this time out to take function
     setTimeout(() => {
-      this.audioController.restartMusic();
+      this.audioController.startMusic();
+      //Shuffle function when game starts
       this.shuffleCards(this.cardsArray);
       this.countdown = this.startCountdown();
       this.busy = false;
-    }, 500);
+    }, 100);
     this.hideCards();
+    //reseting time when game resets
     this.timer.innerText = this.timeRemaining;
   }
+  // create a countdown for the win loss condition
   startCountdown() {
     return setInterval(() => {
       this.timeRemaining--;
       this.timer.innerText = this.timeRemaining;
       if (this.timeRemaining === 0) this.gameOver();
+      // every 1 sec
     }, 1000);
   }
+  canFlipCard(card) {
+    return (
+      !this.busy && //Means its true as we declared it false
+      //checks whether the variable matchedCards does not include the value of the card. If the card is not already matched, this condition evaluates to true.
+      !this.matchedCards.includes(card) &&
+      //This condition checks if the value of card is not equal to the value of this.cardToCheck. If the card is not the same as the one being checked, this condition evaluates to true.
+      card !== this.cardToCheck
+    );
+  }
   flipCard(card) {
+    // IF you can flip card you can do the below.
     if (this.canFlipCard(card)) {
+      // Allows us to add visibility and flip card
       card.classList.add("visible");
-
+      // Using if statement to check for match or !match
       if (this.cardToCheck) {
         this.checkForCardMatch(card);
       } else {
@@ -81,24 +101,31 @@ class MixOrMatch {
       }
     }
   }
-  // Function to determine if user can flip card using boolean
-  canFlipCard(card) {
-    return (
-      !this.busy && //flipped card
-      !this.matchedCards.includes(card) && 
-      card !== this.cardToCheck
-    );
+  shuffleCards(cardsArray) {
+    //Loop
+    for (let i = cardsArray.length - 1; i > 0; i--) {
+      //mathrandom creates a float that is 0-1 but not 1.
+      let randIndex = Math.floor(Math.random() * (i + 1));
+      // we are not shuffling the array itself. But rather the style in CSS.
+      cardsArray[randIndex].style.order = i;
+      // taking random item, random order in css and swapping
+      cardsArray[i].style.order = randIndex;
+    }
   }
+  // Function to determine if user can flip card using boolean
+
   hideCards() {
     this.cardsArray.forEach((card) => {
       card.classList.remove("visible");
-      card.classList.remove("matched");
+      // card.classList.remove("matched");
     });
   }
   gameOver() {
     clearInterval(this.countdown);
-    this.audioController.gameOver();
+    // to pop up the game over screen
     document.getElementById("game-over-text").classList.add("visible");
+    this.audioController.gameOver();
+
   }
   victory() {
     clearInterval(this.countdown);
@@ -129,14 +156,6 @@ class MixOrMatch {
     }, 1000);
   }
 
-  shuffleCards(cardsArray) {
-    
-    for (let i = cardsArray.length - 1; i > 0; i--) {
-      let randIndex = Math.floor(Math.random() * (i + 1));
-      cardsArray[randIndex].style.order = i;
-      cardsArray[i].style.order = randIndex;
-    }
-  }
   getCardType(card) {
     return card.getElementsByClassName("value")[0].src;
   }
@@ -148,7 +167,6 @@ function ready() {
   let overlays = Array.from(document.getElementsByClassName("overlaytext"));
   // to get gamecards from html to array(card)
   let cards = Array.from(document.getElementsByClassName("card"));
-  let game = new MixOrMatch(60, cards);
   // Adding event listeners to Overlay
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", () => {
@@ -164,6 +182,8 @@ function ready() {
       game.flipCard(card);
     });
   });
+  //calling main function to ready function
+  let game = new gameConditions(60, cards);
 }
 // Loading process. TO Load the page.
 if (document.readyState === "loading") {
