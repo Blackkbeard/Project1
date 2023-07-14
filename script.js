@@ -1,47 +1,3 @@
-// creating audio controller for start and end song
-class AudioController {
-  constructor() {
-    this.bgMusic = new Audio("Music/maple.mp3");
-    this.victorySound = new Audio("Music/music.mp3");
-    this.gameOverSound = new Audio("Music/music.mp3");
-    this.bgMusic.volume = 0.05; //volume
-    this.bgMusic.loop = true; // to loop
-    this.victorySound.volume = 0.07; //volume
-    this.victorySound.loop = true; // to loop
-    this.gameOverSound.volume = 0.07; //volume
-    this.gameOverSound.loop = true; // to loop
-  }
-  startMusic() {
-    // start music function
-    this.stopMusic();
-    this.bgMusic.play();
-  }
-  stopMusic() {
-    // start music function
-    this.bgMusic.pause();
-    this.bgMusic.currentTime = 0;
-    // this.victorySound.pause();
-    // this.gameOverSound.pause();
-    // this.victorysound.currentTime = 0;
-    // this.gameOverSound.currentTime = 0;
-  }
-  restartMusic() {
-    //restart music function
-    this.stopMusic();
-    this.bgMusic.play();
-  }
-
-  victory() {
-    // victory music function
-    this.stopMusic();
-    this.victorySound.play();
-  }
-  gameOver() {
-    // game over function
-    this.stopMusic();
-    this.gameOverSound.play();
-  }
-}
 // creating a class of functions. To shuffle cards & set cards & timer
 class gameConditions {
   constructor(totalTime, cards) {
@@ -168,6 +124,51 @@ class gameConditions {
   // return the type of card . the image src value to compare.
   getCardType(card) {
     return card.getElementsByClassName("value")[0].src;
+  }
+}
+// creating audio controller for start and end song
+
+class AudioController {
+  constructor() {
+    this.bgMusic = new Audio("Music/maple.mp3");
+    this.victorySound = new Audio("Music/music.mp3");
+    this.gameOverSound = new Audio("Music/music.mp3");
+    this.bgMusic.volume = 0.05; //volume
+    this.bgMusic.loop = true; // to loop
+    this.victorySound.volume = 0.07; //volume
+    this.victorySound.loop = true; // to loop
+    this.gameOverSound.volume = 0.07; //volume
+    this.gameOverSound.loop = true; // to loop
+  }
+  startMusic() {
+    // start music function
+    this.stopMusic();
+    this.bgMusic.play();
+  }
+  stopMusic() {
+    // start music function
+    this.bgMusic.pause();
+    this.bgMusic.currentTime = 0;
+    // this.victorySound.pause();
+    // this.gameOverSound.pause();
+    // this.victorysound.currentTime = 0;
+    // this.gameOverSound.currentTime = 0;
+  }
+  restartMusic() {
+    //restart music function
+    this.stopMusic();
+    this.bgMusic.play();
+  }
+
+  victory() {
+    // victory music function
+    this.stopMusic();
+    this.victorySound.play();
+  }
+  gameOver() {
+    // game over function
+    this.stopMusic();
+    this.gameOverSound.play();
   }
 }
 // To Start the Game upon loading of webpage
