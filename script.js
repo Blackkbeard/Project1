@@ -37,7 +37,7 @@ class gameConditions {
   }
   canFlipCard(card) {
     return (
-      !this.busy && //Means its true as we declared it false
+      !this.busy && //checking if card is flipped. Means its true as we declared it false
       //checks whether the variable matchedCards does not include the value of the card. If the card is not already matched, this condition evaluates to true.
       !this.matchedCards.includes(card) &&
       //This condition checks if the value of card is not equal to the value of this.cardToCheck. If the card is not the same as the one being checked, this condition evaluates to true.
