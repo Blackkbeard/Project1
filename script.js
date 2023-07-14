@@ -60,7 +60,7 @@ class gameConditions {
   shuffleCards(cardsArray) {
     //Loop
     for (let i = cardsArray.length - 1; i > 0; i--) {
-      //mathrandom creates a float that is 0-1 but not 1. (i+1) is so that it falls into the range of unshuffled elements
+      //math random creates a float that is 0-1 but not 1. (i+1) is so that it falls into the range of unshuffled elements
       let randIndex = Math.floor(Math.random() * (i + 1));
       // we are not shuffling the array itself. But rather the style in CSS.
       cardsArray[randIndex].style.order = i;
